@@ -6,7 +6,7 @@ using OpenQA.Selenium.Firefox;
 
 namespace TestApotec.Tests
 {
-    public class LogTestWrongPass //Login Test on Firefox with wrong password
+    public class LogTestInvalidCredentials //Login Test on Firefox with wrong password
     {
        
 
@@ -25,7 +25,7 @@ namespace TestApotec.Tests
             IWebDriver driver = new ChromeDriver();
             driver.Quit();
 
-            // Iterate through each browser
+            // Iterate through each browser.
             foreach (string browser in browsers)
             {
                 try
@@ -83,10 +83,31 @@ namespace TestApotec.Tests
                     System.Threading.Thread.Sleep(5000);
 
                     // Verify if the login was not successful by checking for "Forkert brugernavn eller adgangskode" message
-
                     IWebElement loggedInMessage = driver.FindElement(By.XPath("//p[contains(text(),'Forkert brugernavn eller adgangskode. Prøv igen el')]"));
                     Console.WriteLine($"Test pass.Login is not Successful with wrong password in {browser}");
                 
+                    //----------------------------------------------------------------------------------
+                    //Test Login with wrong user name
+
+                    // Find the username and password fields and enter credentials
+                    usernameField = driver.FindElement(By.Id("Email"));
+                    usernameField.Clear();
+                    usernameField.SendKeys("katerina@mail.dk"); //wrong username
+
+                    passwordField = driver.FindElement(By.Id("password"));
+                    passwordField.Clear();
+                    passwordField.SendKeys("Bluehouse24");  
+
+                    // Find and click on the login button
+                    loginButton = driver.FindElement(By.Id("login-submit"));
+                    loginButton.Click();
+
+                    // Wait for the page to load after login
+                    System.Threading.Thread.Sleep(5000);
+
+                    // Verify if the login was not successful by checking for "Forkert brugernavn eller adgangskode" message
+                     loggedInMessage = driver.FindElement(By.XPath("//p[contains(text(),'Forkert brugernavn eller adgangskode. Prøv igen el')]"));
+                    Console.WriteLine($"Test pass.Login is not Successful with wrong password in {browser}");
                 }
 
                 catch (Exception ex)
