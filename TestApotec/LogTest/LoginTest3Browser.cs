@@ -7,7 +7,7 @@ using OpenQA.Selenium.Edge;
 
 namespace TestApotec.Tests
 {
-    public class LoginTest3browsers //Login Test on Chrome with correct credentials
+    public class LoginTest3browsers //Login Test on Chrome, Edge and Firefox with valid credentials
     {
         
         [SetUp]

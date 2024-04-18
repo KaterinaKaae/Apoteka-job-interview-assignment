@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TestApotec")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b754d399e10bae25e18a5f9e1d94b2283dc2635f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+64460ad1ae9114f36f21d1e733d418f04f3ca5ad")]
 [assembly: System.Reflection.AssemblyProductAttribute("TestApotec")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TestApotec")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
