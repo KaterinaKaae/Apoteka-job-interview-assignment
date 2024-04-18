@@ -1,28 +1,22 @@
-﻿using NUnit.Framework;
+﻿
 using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
+
 
 namespace TestApotec.Tests
 {
-    public class LoginTestFirefox //Login Test on Firefox with correct credentials
+    public class LoginHelper
     {
-        private IWebDriver driver;
+        private readonly IWebDriver driver;
 
-        [SetUp]
-        public void Setup()
+        public LoginHelper(IWebDriver driver)
         {
-            // Initialize FirefoxDriver
-            driver = new FirefoxDriver();
-            driver.Manage().Window.Maximize();
+            this.driver = driver;
         }
 
-        [Test]
-        public void TestLogin()
+        public void Login(string username, string password)
         {
 
-
             // Navigate to the apopro.dk website
-
             driver.Navigate().GoToUrl("https://apopro.dk");
 
             // Wait for the page to load after login
@@ -41,14 +35,17 @@ namespace TestApotec.Tests
 
             // Find the username and password fields and enter credentials
             IWebElement usernameField = driver.FindElement(By.Id("Email"));
-            usernameField.SendKeys("jekaterina@mail.dk");
+            usernameField.SendKeys(username);
+            Console.WriteLine("Enter username Successful!");
 
             IWebElement passwordField = driver.FindElement(By.Id("password"));
-            passwordField.SendKeys("Bluehouse24");
+            passwordField.SendKeys(password);
+            Console.WriteLine("Enter password Successful!");
 
             // Find and click on the login button
             IWebElement loginButton = driver.FindElement(By.Id("login-submit"));
             loginButton.Click();
+            Console.WriteLine("Submit login Successful!");
 
             // Wait for the page to load after login
             System.Threading.Thread.Sleep(5000); 
@@ -65,15 +62,8 @@ namespace TestApotec.Tests
                 Console.WriteLine("Login Failed!");
             }
 
-            // Close the browser
-            driver.Quit();
-        }
-            [TearDown]
-            public void TearDown()
-            {
-                // Dispose of the driver object
-                driver.Dispose();
-            }
+           
+        }    
         
     }
 }

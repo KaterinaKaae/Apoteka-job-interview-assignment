@@ -1,12 +1,9 @@
-﻿using com.sun.xml.@internal.bind.v2.model.core;
-using com.sun.xml.@internal.bind.v2.schemagen.xmlschema;
-using javax.swing.text.html;
+﻿
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Support.UI;
-using System;
+
 
 namespace TestApotec.Tests
 {
@@ -25,49 +22,12 @@ namespace TestApotec.Tests
         [Test]
         public void TestLogin()
         {
+            // Create instance of Login Helper
+            LoginHelper loginHelper = new LoginHelper(driver);
 
+            // Call Login method before performing test actions
+            loginHelper.Login( "jekaterina@mail.dk", "Bluehouse24");
 
-            // Navigate to the apopro.dk website
-
-            driver.Navigate().GoToUrl("https://apopro.dk");
-
-            // Find and click on the cookies "Accepter alle"
-            IWebElement cookies = driver.FindElement(By.XPath("//button[@aria-label='Accepter alle']"));
-            cookies.Click();
-
-
-            // Wait for the page to load after login
-            System.Threading.Thread.Sleep(3000);
-
-            // Find and click on the login link
-            IWebElement loginLink = driver.FindElement(By.CssSelector("a[href='/Account/Login']"));
-            loginLink.Click();
-
-            // Find the username and password fields and enter credentials
-            IWebElement usernameField = driver.FindElement(By.Id("Email"));
-            usernameField.SendKeys("jekaterina@mail.dk");
-
-            IWebElement passwordField = driver.FindElement(By.Id("password"));
-            passwordField.SendKeys("Bluehouse24");
-
-            // Find and click on the login button
-            IWebElement loginButton = driver.FindElement(By.Id("login-submit"));
-            loginButton.Click();
-
-            // Wait for the page to load after login
-            System.Threading.Thread.Sleep(4000); 
-
-            // Verify if the login was successful by checking for "Profil for jekaterina@mail.dk" element on the logged-in page
-            try
-            {
-                IWebElement loggedInMessage = driver.FindElement(By.CssSelector("h1[class='col-sm-12']"));
-                Console.WriteLine("Login Successful!"); 
-              
-            }
-            catch (NoSuchElementException)
-            {
-                Console.WriteLine("Login Failed!");
-            }
 
             // Find and click on the haandkoebsmedicin link
             IWebElement haandkoebsmedicinLink = driver.FindElement(By.CssSelector("div[role='navigation'] li:nth-child(3) a:nth-child(1) span:nth-child(1)"));
